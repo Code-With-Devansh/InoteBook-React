@@ -1,6 +1,5 @@
 
 const mongoose = require("mongoose");
-let mongoURI = "mongodb+srv://Devansh:Admin@cluster0.8tfvx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
 // app.use(express.json());
 const connectToMongo = async()=>{
