@@ -18,21 +18,21 @@ router.post(
   "/addnote",
   [
     body("title", "title is must for a note").isLength({ min: 3 }),
-    body("desciption", "desciption must be atleast 5 characters").isLength({
+    body("description", "description must be atleast 5 characters").isLength({
       min: 5,
     }),
   ],
   fetchUser,
   async (req, res) => {
     try {
-      const { title, desciption, tag } = req.body;
+      const { title, description, tag } = req.body;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
       const note = new Notes({
         title,
-        desciption,
+        description,
         tag,
         user: req.user.id,
       });
@@ -47,13 +47,13 @@ router.post(
 // route 3: update an existing note
 router.put("/updatenote/:id", fetchUser, async (req, res) => {
   try {
-    let { title, desciption, tag } = req.body;
+    let { title, description, tag } = req.body;
     const newNote = {};
     if (title) {
       newNote.title = title;
     }
-    if (desciption) {
-      newNote.desciption = desciption;
+    if (description) {
+      newNote.description = description;
     }
     if (tag) {
       newNote.tag = tag;
